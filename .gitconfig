@@ -1,5 +1,41 @@
 [user]
-	email = 
-	name = Patrick Mueller
+	email = patrick@muepatrick.dev
+	name = Patrick Müller
+	signingkey = 3AA5C34371567BD2
 [credential]
 	helper = store
+[core]
+	editor = /home/patrick/nvim.appimage
+[alias]
+	# Info
+	s = status
+	b = branch
+	ba = branch -a
+	co = checkout
+	com = !git checkout $(git main-branch)
+	cob = checkout -b
+	l = !git --no-pager log -4 HEAD
+	last = !git --no-pager log -4 HEAD
+	tree = log --oneline --graph --decorate --all --color
+	dfh = !git --no-pager diff HEAD --name-status
+	dh = !git diff HEAD
+	dfm = !git --no-pager diff $(git main-branch) --name-status
+	dm = !git diff $(git main-branch)
+	main-branch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
+	# Commiting
+	a = add
+	ap = add -p
+	ua = restore --staged
+	c = commit
+	cm = commit -m
+	ca = commit --amend
+	dis = restore
+	# Stash
+	stu = stash -u
+	stpop = stash pop
+	stl = stash list
+	# Up-/Downloading
+	upush = !git push --set-upstream origin $(git branch --show-current)
+[pager]
+	branch = false
+	stash = false
