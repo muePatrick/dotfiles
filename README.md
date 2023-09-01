@@ -6,7 +6,11 @@
 
 1. [Install zsh](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)
 2. [Install oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh#basic-installation)
-3. Link config file: `ln -s ./dotfiles/.zshrc .zshrc`
+3. [Install p10k](https://github.com/romkatv/powerlevel10k#oh-my-zsh)
+4. [Install zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh)
+5. [Install zsh-fzf-history-search](https://github.com/joshskidmore/zsh-fzf-history-search#oh-my-zsh)
+6. Link config file: `ln -s ./dotfiles/.zshrc .zshrc`
+7. Link p10k theme: `ln -s ./dotfiles/.p10k.zsh .p10k.zsh`
 
 ## TMUX
 
@@ -22,5 +26,5 @@
 ## NeoVim
 
 1. Install NeoVim:
-  1. Download [AppImage](https://github.com/neovim/neovim/wiki/Installing-Neovim#appimage-universal-linux-package) to *Home*, the *.zshrc* has an alias for that.
+    1. Download [AppImage](https://github.com/neovim/neovim/wiki/Installing-Neovim#appimage-universal-linux-package) to *Home*, the *.zshrc* has an alias for that.
 2. Enable custom config from [muePatrick/kickstart.nvim](https://github.com/muePatrick/kickstart.nvim#Installation)
