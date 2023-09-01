@@ -38,11 +38,20 @@ alias t="tmux a"
 alias tt="tmux a -t"
 alias tn="tmux new -s"
 alias ts="tmux"
+
 alias g="git"
+
+curl_cheat() {
+  curl cheat.sh/$1
+}
+alias cheat=curl_cheat
+
 alias nvim="/home/patrick/nvim.appimage"
+
 alias as="/home/patrick/android-studio/bin/studio.sh"
 alias adbc="/home/patrick/Android/Sdk/platform-tools/adb connect"
 export PATH=$PATH:/home/patrick/Android/Sdk/platform-tools
+
 export GOROOT=/usr/lib/go-1.20
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
