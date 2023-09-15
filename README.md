@@ -26,5 +26,11 @@
 ## NeoVim
 
 1. Install NeoVim:
-    1. Download [AppImage](https://github.com/neovim/neovim/wiki/Installing-Neovim#appimage-universal-linux-package) to *Home*, the *.zshrc* has an alias for that.
+    1. Download [AppImage](https://github.com/neovim/neovim/wiki/Installing-Neovim#appimage-universal-linux-package) to *Home*, the *.zshrc* has an alias for that
 2. Enable custom config from [muePatrick/kickstart.nvim](https://github.com/muePatrick/kickstart.nvim#Installation)
+
+## VSCode
+
+1. Install [VSCode](https://code.visualstudio.com/)
+2. Start VSCode and open this folder
+3. Install the plugins through the popup that will recommend all the plugins in this repo
