@@ -44,8 +44,6 @@ curl_cheat() {
 }
 alias cheat=curl_cheat
 
-alias nvim="/home/patrick/nvim.appimage"
-
 alias as="/home/patrick/android-studio/bin/studio.sh"
 alias adbc="/home/patrick/Android/Sdk/platform-tools/adb connect"
 export PATH=$PATH:/home/patrick/Android/Sdk/platform-tools
