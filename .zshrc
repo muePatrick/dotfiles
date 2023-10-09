@@ -19,7 +19,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions wakatime zsh-fzf-history-search)
+plugins=(git zsh-autosuggestions zsh-fzf-history-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -160,7 +160,6 @@ alias jwtp="decode_jwt 2"
 
 alias hd="wmctrl -r ':SELECT:' -e 0,800,1200,1920,1080"
 
-source <(kubectl completion zsh)
 source <(gh completion -s zsh)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
