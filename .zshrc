@@ -161,6 +161,7 @@ alias jwtp="decode_jwt 2"
 alias hd="wmctrl -r ':SELECT:' -e 0,800,1200,1920,1080"
 
 source <(gh completion -s zsh)
+source <(zoxide init zsh)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
