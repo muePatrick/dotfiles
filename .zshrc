@@ -137,6 +137,28 @@ userManagement_start_token() {
 }
 alias tosu=userManagement_start_token
 
+dynamically_start_token() {
+  token=$(/home/patrick/go/bin/tokens-cli --dir /home/patrick/snabble/platform-deploy/jwt/testing token --subject patrick.mueller-devserver@snabble.io devserverToken --out - $*)
+  echo $token
+  decode_jwt 2 $token
+  REACT_APP_TOKEN=$(echo $token) npm start
+}
+alias tod=dynamically_start_token
+dynamically_start_token_staging() {
+  token=$(/home/patrick/go/bin/tokens-cli --dir /home/patrick/snabble/platform-deploy/jwt/staging token --subject patrick.mueller-devserver@snabble.io devserverToken --out - $*)
+  echo $token
+  decode_jwt 2 $token
+  REACT_APP_TOKEN=$(echo $token) npm start
+}
+alias tods=dynamically_start_token_staging
+dynamically_start_token_prod() {
+  token=$(/home/patrick/go/bin/tokens-cli --dir /home/patrick/snabble/platform-deploy/jwt/prod token --subject patrick.mueller-devserver@snabble.io devserverToken --out - $*)
+  echo $token
+  decode_jwt 2 $token
+  REACT_APP_TOKEN=$(echo $token) npm start
+}
+alias todp=dynamically_start_token_prod
+
 print_token() {
   decode_jwt 2 $(cat /home/patrick/snabbleToken.txt)
 }
