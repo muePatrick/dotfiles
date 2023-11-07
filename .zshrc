@@ -46,6 +46,11 @@ curl_cheat() {
 }
 alias cheat=curl_cheat
 
+find_open() {
+  find -iname $1 | fzf | xargs --no-run-if-empty -i xdg-open '{}'
+}
+alias findopen=find_open
+
 alias as="/home/patrick/android-studio/bin/studio.sh"
 alias adbc="/home/patrick/Android/Sdk/platform-tools/adb connect"
 export PATH=$PATH:/home/patrick/Android/Sdk/platform-tools
