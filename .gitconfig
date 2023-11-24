@@ -14,6 +14,7 @@
 	co = checkout
 	com = !git checkout $(git main-branch)
 	cob = checkout -b
+	cos = !git branch | fzf | xargs --no-run-if-empty git checkout
 	l = !git --no-pager log -4 HEAD
 	last = !git --no-pager log -4 HEAD
 	tree = log --oneline --graph --decorate --all --color
