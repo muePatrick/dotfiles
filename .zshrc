@@ -40,6 +40,7 @@ alias tn="tmux new -s"
 alias ts="tmux"
 
 alias g="git"
+alias gk="gitkraken -p ."
 
 curl_cheat() {
   curl cheat.sh/$1
