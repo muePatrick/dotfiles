@@ -29,6 +29,7 @@
 	a = add
 	ap = add -p
 	ua = restore --staged
+	rbm = rebase $(git main-branch)
 	c = commit
 	cm = commit -m
 	ca = commit --amend
