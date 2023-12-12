@@ -21,7 +21,8 @@
 ## GIT
 
 1. Install Git
-2. Link config file: `ln -s ./dotfiles/.gitconfig .gitconfig`
+2. [Install delta](https://github.com/dandavison/delta)
+3. Link config file: `ln -s ./dotfiles/.gitconfig .gitconfig`
 
 ## NeoVim
 

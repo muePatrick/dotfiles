@@ -2,10 +2,14 @@
 	email = patrick@muepatrick.dev
 	name = Patrick Müller
 	signingkey = 3AA5C34371567BD2
-[credential]
-	helper = store
 [core]
 	editor = /home/patrick/nvim.appimage
+	pager = delta
+[pager]
+	branch = false
+	stash = false
+[credential]
+	helper = store
 [alias]
 	# Info
 	s = status
@@ -40,6 +44,9 @@
 	stl = stash list
 	# Up-/Downloading
 	upush = !git push --set-upstream origin $(git branch --show-current)
-[pager]
-	branch = false
-	stash = false
+[delta]
+	navigate = true    # use n and N to move between diff sections
+	light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+	side-by-side = true
+[interactive]
+	diffFilter = delta --line-numbers --color-only
