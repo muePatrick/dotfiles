@@ -15,6 +15,7 @@
 	s = status
 	b = branch
 	ba = branch -a
+	bc = branch --show-current
 	co = checkout
 	com = !git checkout $(git main-branch)
 	cob = checkout -b
