@@ -58,6 +58,7 @@ export PATH=$PATH:/home/patrick/Android/Sdk/platform-tools
 
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/patrick/go/bin
 
 alias nocors="google-chrome --user-data-dir="/home/patrick/chrome-dev-disabled-security" --disable-web-security --disable-site-isolation-trials"
 
