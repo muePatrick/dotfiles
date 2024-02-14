@@ -137,6 +137,10 @@ userManagement_start_token() {
   REACT_APP_TOKEN=$(cat /home/patrick/userManagementToken$1.jwt) npm start
 }
 alias tosu=userManagement_start_token
+appUsersAdmin_start_token() {
+  REACT_APP_TOKEN=$(cat /home/patrick/appUsersAdmin.jwt) npm start
+}
+alias tosa=appUsersAdmin_start_token
 
 dynamically_start_token() {
   token=$(/home/patrick/go/bin/tokens-cli --dir /home/patrick/snabble/platform-deploy/jwt/testing token --subject patrick.mueller-devserver@snabble.io devserverToken --out - $*)
