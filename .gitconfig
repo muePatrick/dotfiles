@@ -33,6 +33,8 @@
 	# Commiting
 	a = add
 	ap = add -p
+	af = !git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs --no-run-if-empty -0 -o git add
+	apf = !git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs --no-run-if-empty -0 -o git add -p
 	ua = restore --staged
 	rbm = rebase $(git main-branch)
 	c = commit
