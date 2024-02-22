@@ -40,7 +40,10 @@ alias tn="tmux new -s"
 alias ts="tmux"
 
 alias g="git"
-alias gk="gitkraken -p ."
+start_gitkraken_in_current_folder() {
+  gitkraken -p "$(pwd)"
+}
+alias gk="start_gitkraken_in_current_folder"
 
 curl_cheat() {
   curl cheat.sh/$1
