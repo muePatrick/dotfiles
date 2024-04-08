@@ -28,6 +28,11 @@
 	l = !git --no-pager log -4 HEAD
 	last = !git --no-pager log -4 HEAD
 	shows = !git log --oneline | fzf | cut -d ' ' -f 1 | xargs --no-run-if-empty git show 
+	bs = bisect
+	bss = bisect start
+	bsr = bisect reset
+	bsg = bisect good
+	bsb = bisect bad
 	# tree = log --oneline --graph --decorate --all --color
 	tree = log --branches --remotes --tags --graph --oneline --decorate --color
 	dfh = !git --no-pager diff HEAD --name-status
