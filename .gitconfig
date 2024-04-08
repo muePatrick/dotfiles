@@ -53,6 +53,7 @@
 	dis = restore
 	# Stash
 	stu = stash -u
+	sta = stash apply
 	stpop = stash pop
 	stl = stash list
 	# Up-/Downloading
