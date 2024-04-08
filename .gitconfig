@@ -3,7 +3,7 @@
 	name = Patrick Müller
 	signingkey = 02737092E40AF895
 [core]
-	editor = /home/patrick/nvim.appimage
+	editor = nvim
 	pager = delta
 [commit]
 	gpgsign = true
