@@ -23,6 +23,7 @@
 	cob = checkout -b
 	cos = !git branch | fzf | xargs --no-run-if-empty git checkout
 	cosa = !git branch -a | fzf | xargs --no-run-if-empty git checkout
+	cosc = !git log --oneline | fzf | cut -d ' ' -f 1 | xargs --no-run-if-empty git checkout
 	cospr = !GH_PAGER="" gh pr list | fzf | cut -d'   ' -f1 | xargs --no-run-if-empty -i{} gh pr checkout {}
 	l = !git --no-pager log -4 HEAD
 	last = !git --no-pager log -4 HEAD
