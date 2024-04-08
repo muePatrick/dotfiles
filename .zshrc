@@ -1,4 +1,5 @@
 shuf -n 1 ~/dotfiles/GLaDOS_Voicelines.csv | cowsay
+source ~/dotfiles/secrets.sh
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -21,7 +22,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-fzf-history-search)
+plugins=(git zsh-autosuggestions zsh-fzf-history-search zsh-ai-commands)
 
 source $ZSH/oh-my-zsh.sh
 
