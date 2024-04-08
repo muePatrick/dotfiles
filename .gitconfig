@@ -27,7 +27,9 @@
 	cospr = !GH_PAGER="" gh pr list | fzf | cut -d'   ' -f1 | xargs --no-run-if-empty -i{} gh pr checkout {}
 	l = !git --no-pager log -4 HEAD
 	last = !git --no-pager log -4 HEAD
-	tree = log --oneline --graph --decorate --all --color
+	shows = !git log --oneline | fzf | cut -d ' ' -f 1 | xargs --no-run-if-empty git show 
+	# tree = log --oneline --graph --decorate --all --color
+	tree = log --branches --remotes --tags --graph --oneline --decorate --color
 	dfh = !git --no-pager diff HEAD --name-status
 	dh = !git diff HEAD
 	dfm = !git --no-pager diff $(git main-branch) --name-status
