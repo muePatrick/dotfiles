@@ -1,10 +1,12 @@
 [user]
 	email = patrick@muepatrick.dev
 	name = Patrick Müller
-	signingkey = 3AA5C34371567BD2
+	signingkey = 02737092E40AF895
 [core]
 	editor = /home/patrick/nvim.appimage
 	pager = delta
+[commit]
+	gpgsign = true
 [pager]
 	branch = false
 	stash = false
