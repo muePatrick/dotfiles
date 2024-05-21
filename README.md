@@ -35,3 +35,10 @@
 1. Install [VSCode](https://code.visualstudio.com/)
 2. Start VSCode and open this folder
 3. Install the plugins through the popup that will recommend all the plugins in this repo
+
+## Fonts
+
+1. Download and Install [Jet Brains Mono](https://github.com/JetBrains/JetBrainsMono)
+    1. Setup `JetBrains Mono NL` for Terminal
+2. Download and Install the two [NerfFontsSymbols Only Fonts](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/NerdFontsSymbolsOnly)
+    1. They get automatically used when installed (by some of the NeoVim Plugins)
