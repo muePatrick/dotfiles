@@ -63,8 +63,11 @@ alias adbc="/home/patrick/Android/Sdk/platform-tools/adb connect"
 export PATH=$PATH:/home/patrick/Android/Sdk/platform-tools
 
 export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:/home/patrick/go/bin
+export GOROOT=/usr/local/go 
+export GOBIN=$GOPATH/bin 
+export PATH=$PATH:$GOPATH 
+export PATH=$PATH:$GOROOT/bin
+# export PATH=$PATH:/home/patrick/go/bin
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
 alias nocors="google-chrome --user-data-dir="/home/patrick/chrome-dev-disabled-security" --disable-web-security --disable-site-isolation-trials"
