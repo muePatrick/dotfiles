@@ -70,6 +70,8 @@ export PATH=$PATH:$GOROOT/bin
 # export PATH=$PATH:/home/patrick/go/bin
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
+export PATH="$PATH:/home/patrick/.fzf/bin"
+
 alias nocors="google-chrome --user-data-dir="/home/patrick/chrome-dev-disabled-security" --disable-web-security --disable-site-isolation-trials"
 
 print_gh_issues() {
