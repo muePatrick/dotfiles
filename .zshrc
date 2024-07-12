@@ -62,10 +62,10 @@ alias as="/home/patrick/android-studio/bin/studio.sh"
 alias adbc="/home/patrick/Android/Sdk/platform-tools/adb connect"
 export PATH=$PATH:/home/patrick/Android/Sdk/platform-tools
 
-export GOPATH=$HOME/go
+# export GOPATH=$HOME/go
 export GOROOT=/usr/local/go 
 export GOBIN=$GOPATH/bin 
-export PATH=$PATH:$GOPATH 
+export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$GOROOT/bin
 # export PATH=$PATH:/home/patrick/go/bin
 export PATH="$PATH:/opt/nvim-linux64/bin"
