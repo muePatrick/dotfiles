@@ -129,7 +129,7 @@ create_pr() {
   gh pr create \
     -t "$(git branch --show-current)" \
     -b "$(git --no-pager log --reverse --pretty=format:'## %s%n%b%n%n' $(git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4)..HEAD)" \
-    $*
+    $* && gh pr view --web
 }
 alias prc="create_pr"
 
