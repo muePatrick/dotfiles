@@ -37,6 +37,7 @@
 	tree = log --branches --remotes --tags --graph --oneline --decorate --color
 	dfh = !git --no-pager diff HEAD --name-status
 	dh = !git diff HEAD
+	dhf = !git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs --no-run-if-empty -0 -o git diff HEAD
 	dfm = !git --no-pager diff $(git main-branch) --name-status
 	dm = !git diff $(git main-branch)
 	main-branch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
@@ -51,6 +52,7 @@
 	cm = commit -m
 	ca = commit --amend
 	dis = restore
+	disf = !git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs --no-run-if-empty -0 -o git restore
 	# Stash
 	stu = stash -u
 	sta = stash apply
