@@ -42,6 +42,8 @@ alias ts="tmux"
 
 alias b="batcat"
 
+alias fd="fdfind"
+
 alias g="git"
 start_gitkraken_in_current_folder() {
   gitkraken -p "$(pwd)"
