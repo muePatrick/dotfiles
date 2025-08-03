@@ -128,19 +128,19 @@ echo "\
 \n\
 🟡 Waiting For Review:\n\
 \n\
-$(gh api -X GET search/issues -f q='state:open review:none author:@me' --jq '(["Updated","Title","Url"] | (., map(length*"-"))), (.items[] | [(.updated_at | sub("\\.000Z$"; "Z") | fromdateiso8601 | strftime("%d.%m.%Y %H:%M")), (.draft | if . == true then "✏️  " else "" end)+.title, .pull_request.html_url]) | @tsv' | column -ts $'\t')\n\
+$(gh api -X GET search/issues -f q='state:open review:none author:@me' --jq '(["Updated","Title","Url"] | (., map(length*"-"))), (.items[] | [(.updated_at | sub("\\.000Z$"; "Z") | fromdateiso8601 | strftime("%d.%m.%Y %H:%M")), (.comments | if . > 0 then "💬  " else "" end)+(.draft | if . == true then "✏️  " else "" end)+.title, .pull_request.html_url]) | @tsv' | column -ts $'\t')\n\
 \n\
 ---------------------------------------\n\
 \n\
 🔴 Changes Requested:\n\
 \n\
-$(gh api -X GET search/issues -f q='state:open review:changes_requested author:@me' --jq '(["Updated","Title","Url"] | (., map(length*"-"))), (.items[] | [(.updated_at | sub("\\.000Z$"; "Z") | fromdateiso8601 | strftime("%d.%m.%Y %H:%M")), (.draft | if . == true then "✏️  " else "" end)+.title, .pull_request.html_url]) | @tsv' | column -ts $'\t')\n\
+$(gh api -X GET search/issues -f q='state:open review:changes_requested author:@me' --jq '(["Updated","Title","Url"] | (., map(length*"-"))), (.items[] | [(.updated_at | sub("\\.000Z$"; "Z") | fromdateiso8601 | strftime("%d.%m.%Y %H:%M")), (.comments | if . > 0 then "💬  " else "" end)+(.draft | if . == true then "✏️  " else "" end)+.title, .pull_request.html_url]) | @tsv' | column -ts $'\t')\n\
 \n\
 ---------------------------------------\n\
 \n\
 🟢 Approved:\n\
 \n\
-$(gh api -X GET search/issues -f q='state:open review:approved author:@me' --jq '(["Updated","Title","Url"] | (., map(length*"-"))), (.items[] | [(.updated_at | sub("\\.000Z$"; "Z") | fromdateiso8601 | strftime("%d.%m.%Y %H:%M")), (.draft | if . == true then "✏️  " else "" end)+.title, .pull_request.html_url]) | @tsv' | column -ts $'\t')\n\
+$(gh api -X GET search/issues -f q='state:open review:approved author:@me' --jq '(["Updated","Title","Url"] | (., map(length*"-"))), (.items[] | [(.updated_at | sub("\\.000Z$"; "Z") | fromdateiso8601 | strftime("%d.%m.%Y %H:%M")), (.comments | if . > 0 then "💬  " else "" end)+(.draft | if . == true then "✏️  " else "" end)+.title, .pull_request.html_url]) | @tsv' | column -ts $'\t')\n\
 \n\
 ---------------------------------------\n\
 \n\
@@ -150,23 +150,24 @@ $(gh api -X GET search/issues -f q='state:open review:approved author:@me' --jq 
 \n\
 📌 Waiting For My Review (explicit):\n\
 \n\
-$(gh api -X GET search/issues -f q='state:open review:none user-review-requested:@me' --jq '(["Updated","User","Title","Url"] | (., map(length*"-"))), (.items[] | [(.updated_at | sub("\\.000Z$"; "Z") | fromdateiso8601 | strftime("%d.%m.%Y %H:%M")), .user.login, (.draft | if . == true then "✏️  " else "" end)+.title, .pull_request.html_url]) | @tsv' | column -ts $'\t')\n\
+$(gh api -X GET search/issues -f q='state:open review:none user-review-requested:@me' --jq '(["Updated","User","Title","Url"] | (., map(length*"-"))), (.items[] | [(.updated_at | sub("\\.000Z$"; "Z") | fromdateiso8601 | strftime("%d.%m.%Y %H:%M")), .user.login, (.comments | if . > 0 then "💬  " else "" end)+(.draft | if . == true then "✏️  " else "" end)+.title, .pull_request.html_url]) | @tsv' | column -ts $'\t')\n\
 \n\
 ---------------------------------------\n\
 \n\
 💡 Waiting For My Review (implicit):\n\
 \n\
-$(gh api -X GET search/issues -f q='state:open review:none review-requested:@me -label:"dependencies"' --jq '(["Updated","User","Title","Url"] | (., map(length*"-"))), (.items[] | [(.updated_at | sub("\\.000Z$"; "Z") | fromdateiso8601 | strftime("%d.%m.%Y %H:%M")), .user.login, (.draft | if . == true then "✏️  " else "" end)+.title, .pull_request.html_url]) | @tsv' | column -ts $'\t')\n\
-\n\
----------------------------------------\n\
-\n\
-🤖 Waiting For My Review (Dependabot):\n\
-\n\
-$(gh api -X GET search/issues -f q='state:open review:none review-requested:@me label:"dependencies"' --jq '(["Updated","Repo","Title","Url"] | (., map(length*"-"))), (.items[] | [(.updated_at | sub("\\.000Z$"; "Z") | fromdateiso8601 | strftime("%d.%m.%Y %H:%M")), (.repository_url | split("/")[-1]), .title, .pull_request.html_url]) | @tsv' | column -ts $'\t')\n\
+$(gh api -X GET search/issues -f q='state:open review:none review-requested:@me -label:"dependencies"' --jq '(["Updated","User","Title","Url"] | (., map(length*"-"))), (.items[] | [(.updated_at | sub("\\.000Z$"; "Z") | fromdateiso8601 | strftime("%d.%m.%Y %H:%M")), .user.login, (.comments | if . > 0 then "💬  " else "" end)+(.draft | if . == true then "✏️  " else "" end)+.title, .pull_request.html_url]) | @tsv' | column -ts $'\t')\n\
 \n\
 ---------------------------------------\n\
 \n\
 "
+# 🤖 Waiting For My Review (Dependabot):\n\
+# \n\
+# $(gh api -X GET search/issues -f q='state:open review:none review-requested:@me label:"dependencies"' --jq '(["Updated","Repo","Title","Url"] | (., map(length*"-"))), (.items[] | [(.updated_at | sub("\\.000Z$"; "Z") | fromdateiso8601 | strftime("%d.%m.%Y %H:%M")), (.repository_url | split("/")[-1]), .title, .pull_request.html_url]) | @tsv' | column -ts $'\t')\n\
+# \n\
+# ---------------------------------------\n\
+# \n\
+# "
 }
 alias prm="print_gh_issues"
 
