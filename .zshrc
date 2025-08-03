@@ -43,6 +43,32 @@ alias ts="tmux"
 alias b="batcat"
 
 alias fd="fdfind"
+
+alias tf="terraform"
+
+alias lln="ll -t | head"
+
+alias d="docker"
+
+dockercontainerwait() {
+  echo "### Running Command ###"
+  if [[ $1 == "-a" ]]; then
+    eval ${@:2} | tee /dev/tty | grep "Creating service" | wc -l | read SERVICE_COUNT
+    echo "### Waiting for $SERVICE_COUNT services ###"
+    while [[ $(docker ps | wc -l) -ne $(($SERVICE_COUNT+1)) ]]; do sleep 1; done; echo done
+    notify-send -t 1 "Docker Container Wait" "$SERVICE_COUNT services reached"
+    echo "###  $SERVICE_COUNT services reached ###"
+  else
+    eval ${@:2}
+    echo "### Waiting for $1 services ###"
+    while [[ $(docker ps | wc -l) -ne $(($1+1)) ]]; do sleep 1; done; echo done
+    notify-send -t 1 "Docker Container Wait" "$1 services reached"
+    echo "###  $1 services reached ###"
+  fi
+}
+alias dcw="dockercontainerwait"
+alias dockernamef="docker ps --format 'json' | jq -r '.Names' | fzf"
+alias dnf="docker ps --format 'json' | jq -r '.Names' | fzf"
 alias tf="terraform"
 
 
