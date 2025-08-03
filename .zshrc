@@ -45,6 +45,18 @@ alias b="batcat"
 alias fd="fdfind"
 
 alias g="git"
+create_worktree() {
+  git branch | fzf | xargs --no-run-if-empty -I {} git worktree add ~/worktrees/$(basename $PWD)/{} {}
+}
+alias wta="create_worktree"
+select_worktree() {
+  pushd "$(git worktree list | cut -d" " -f 1 | fzf)"
+}
+alias wtl="select_worktree"
+remove_worktree() {
+  git worktree list | cut -d" " -f 1 | fzf | xargs --no-run-if-empty -I {} git worktree remove {}
+}
+alias wtr="remove_worktree"
 start_gitkraken_in_current_folder() {
   gitkraken -p "$(pwd)"
 }
@@ -125,15 +137,100 @@ $(gh api -X GET search/issues -f q='state:open review:none review-requested:@me 
 "
 }
 alias prm="print_gh_issues"
+
 create_pr() {
+  local spacer
+  spacer='\n\n'
   gh pr create \
     -t "$(git branch --show-current)" \
-    -b "$(git --no-pager log --reverse --pretty=format:'## %s%n%b%n%n' $(git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4)..HEAD)" \
+    -b "$(git --no-pager log --reverse --pretty=format:'## %s%n%b%n%n' $(git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4)..HEAD)
+
+[Jira Ticket]($(get_ticket_url))" \
     $* && gh pr view --web
 }
 alias prc="create_pr"
+
 alias prd="gh dash --config $HOME/dotfiles/.gh-dash-config.yml"
 
+get_ticket_url() {
+    if [ -z "$TICKET_BASE_URL" ]; then
+        echo "No JIRA base URL set. Please configure the URL in the variable TICKET_BASE_URL"
+        return 1
+    fi
+
+    local branch_name
+    branch_name=$(git rev-parse --abbrev-ref HEAD)
+    local ticket_id
+    ticket_id=$(echo "$branch_name" | grep -oE '^[A-Z]+-[0-9]+')
+
+    if [ -n "$ticket_id" ]; then
+        echo "${TICKET_BASE_URL}/${ticket_id}"
+    else
+        echo "No JIRA ticket found in branch name"
+    fi
+}
+
+open_ticket() {
+    if [ -z "$TICKET_BASE_URL" ]; then
+        echo "No JIRA base URL set. Please configure the URL in the variable TICKET_BASE_URL"
+        return 1
+    fi
+
+    local branch_name
+    branch_name=$(git rev-parse --abbrev-ref HEAD)
+    local ticket_id
+    ticket_id=$(echo "$branch_name" | grep -oE '^[A-Z]+-[0-9]+')
+
+    if [ -n "$ticket_id" ]; then
+        xdg-open "${TICKET_BASE_URL}/${ticket_id}"
+    else
+        echo "No JIRA ticket found in branch name"
+    fi
+}
+alias prt="open_ticket"
+
+alias prw="gh pr view --web"
+
+clone_repo() {
+  # This function is called the name of the orga as the only argument.
+  # It shows the list of available repos where multiple can be selected.
+  # Since the fzf features used require a new version of fzf the apt version
+  # is not sufficient.
+
+  if [ -z "$1" ]; then
+      echo "No organization given."
+      return 1
+  fi
+  REPOS_AVAIL=$(gh repo list "$1" --limit 1000 --json url,name,description --jq '.[] | "\(.url) \(.name) \(.description)"')
+
+  if [ -z "$REPOS_AVAIL" ]; then
+      echo "No repositories found for organization."
+      return 1
+  fi
+
+  REPO_NAMES=$(echo $REPOS_AVAIL |  awk '{print $2}')
+  REPO_DESCS=$(echo "$REPOS_AVAIL" | awk '{if (NF < 3) print ""; else for (i=3; i<=NF; i++) printf $i (i<NF ? OFS : "\n")}')
+  export REPO_DESCS  # otherwise fzf can't access it
+  REPO_SEL=$(echo $REPO_NAMES | fzf --reverse --multi --height=~100% --preview-window down:wrap --preview 'echo "$REPO_DESCS" | sed -n "$(({n}+1))"p | sed "s/^\s*//g;s/\s*$//g"')
+
+  if [ -z "$REPO_SEL" ]; then
+      echo "No repositories selected."
+      return 0
+  fi
+
+  echo "$REPO_SEL" | while read -r REPO_CURR; do
+      REPO_URL=$(echo "$REPOS_AVAIL" | awk -v sel="$REPO_CURR" '$2 == sel {print $1}')
+
+      if [ -d "$REPO_CURR" ]; then
+          echo "Repository '$REPO_CURR' already cloned. Skipping."
+      else
+          echo "Cloning repository '$REPO_CURR' ($REPO_URL) ..."
+          git clone "$REPO_URL" || echo "Error cloning $REPO_CURR - it might already be cloned."
+      fi
+  done
+
+  echo "Operation completed."
+}
 
 update_token() {
   echo "$1" > /home/patrick/snabbleToken.txt
