@@ -17,12 +17,19 @@
 1. [Install Tmux](https://github.com/tmux/tmux/wiki/Installing)
 2. [Install TPM](https://github.com/tmux-plugins/tpm#installation)
 3. Link config file: `ln -s ./dotfiles/.tmux.conf .tmux.conf`
+4. Install plugins: `<C-b><S-i>`
 
 ## GIT
 
 1. Install Git
 2. [Install delta](https://github.com/dandavison/delta)
 3. Link config file: `ln -s ./dotfiles/.gitconfig .gitconfig`
+4. Link ignore file: `ln -s ./dotfiles/.gitignore .gitignore`
+5. Link attributes file: `ln -s ./dotfiles/.gitattributes .gitattributes`
+
+## Github CLI
+
+**TODO**
 
 ## NeoVim
 
@@ -35,6 +42,10 @@
 1. Install [VSCode](https://code.visualstudio.com/)
 2. Start VSCode and open this folder
 3. Install the plugins through the popup that will recommend all the plugins in this repo
+
+## Kitty
+
+**TODO**
 
 ## Fonts
 
