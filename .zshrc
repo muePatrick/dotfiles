@@ -115,6 +115,9 @@ export PATH=$PATH:$GOROOT/bin
 
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:/home/patrick/.fzf/bin"
+
+export EDITOR=nvim # for C-x C-e
+
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH" # for ASDF
 # source ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
 
