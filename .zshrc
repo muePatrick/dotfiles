@@ -132,6 +132,8 @@ create_pr() {
     $* && gh pr view --web
 }
 alias prc="create_pr"
+alias prd="gh dash --config $HOME/dotfiles/.gh-dash-config.yml"
+
 
 update_token() {
   echo "$1" > /home/patrick/snabbleToken.txt
