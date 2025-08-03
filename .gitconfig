@@ -66,3 +66,10 @@
 	side-by-side = true
 [interactive]
 	diffFilter = delta --line-numbers --color-only
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+[core]
+    attributesFile = ~/.gitattributes
+    excludesFile = ~/.gitignore
+[diff "blackbox"]
+    textconv = gpg --use-agent -q --batch --decrypt
