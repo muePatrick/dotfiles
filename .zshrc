@@ -43,6 +43,8 @@ alias ts="tmux"
 alias b="batcat"
 
 alias fd="fdfind"
+alias tf="terraform"
+
 
 alias g="git"
 create_worktree() {
