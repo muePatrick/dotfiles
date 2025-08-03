@@ -123,6 +123,10 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH" # for ASDF
 
 alias nocors="google-chrome --user-data-dir="/home/patrick/chrome-dev-disabled-security" --disable-web-security --disable-site-isolation-trials"
 
+rand() {
+  echo $((RANDOM % $1))
+}
+
 print_gh_issues() {
 echo "\
 #######################################\n\
