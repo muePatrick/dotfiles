@@ -42,7 +42,7 @@ alias ts="tmux"
 
 alias b="batcat"
 
-alias fd="fdfind"
+# alias fd="fdfind"
 
 alias tf="terraform"
 
@@ -107,16 +107,17 @@ export PATH=$PATH:/home/patrick/Android/Sdk/platform-tools
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/go
 export GOBIN=$GOPATH/bin
-# export GOBIN=$GOROOT/bin
 export GOPRIVATE='github.com/snabble/*'
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$GOROOT/bin
-# export PATH=$PATH:/home/patrick/go/bin
+
+export PATH=$PATH:/usr/bin/flutter/flutter/bin
 
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:/home/patrick/.fzf/bin"
 
 export EDITOR=nvim # for C-x C-e
+export BROWSER=$(xdg-settings get default-web-browser | cut -d"." -f1)
 
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH" # for ASDF
 # source ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
