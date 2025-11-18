@@ -1,7 +1,7 @@
 [user]
 	email = patrick@muepatrick.dev
 	name = Patrick Müller
-	signingkey = 02737092E40AF895
+	signingkey = EB3A1546B4F71A31
 [core]
 	editor = nvim
 	pager = delta
@@ -71,7 +71,7 @@
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 [core]
-    attributesFile = ~/.gitattributes
-    excludesFile = ~/.gitignore
+	attributesFile = ~/.gitattributes
+	excludesFile = ~/.gitignore
 [diff "blackbox"]
-    textconv = gpg --use-agent -q --batch --decrypt
+	textconv = gpg --use-agent -q --batch --decrypt
