@@ -12,6 +12,30 @@
 #
 #   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 
+# Custom segment to display the current environment as set by
+# the set_env script in the platform repo
+# p10k segment function names have to start with 'prompt_', but are
+# referenced without the prefix.
+function prompt_platform_env() {
+  [[ -n "${PLATFORM_ENV}" ]] || return
+  local bg_color 
+  case "${PLATFORM_ENV}" in
+    "testing")
+      bg_color='#3A8B3A'
+      ;;
+    "staging")
+      bg_color='#8B8B3A'
+      ;;
+    "prod")
+      bg_color='#8B3A3A'
+      ;;
+    *)
+      bg_color='#3A3A8B'
+      ;;
+  esac
+  p10k segment -b "${bg_color}" -f '#FFFFFF' -i '󱂚' -t "${PLATFORM_ENV}"
+}
+
 # Temporarily change options.
 'builtin' 'local' '-a' 'p10k_config_opts'
 [[ ! -o 'aliases'         ]] || p10k_config_opts+=('aliases')
@@ -52,6 +76,7 @@
     direnv                  # direnv status (https://direnv.net/)
     asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    platform_env
     anaconda                # conda environment (https://conda.io/)
     pyenv                   # python environment (https://github.com/pyenv/pyenv)
     goenv                   # go environment (https://github.com/syndbg/goenv)
