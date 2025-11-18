@@ -61,6 +61,7 @@
 	stpop = stash pop
 	stl = stash list
 	# Up-/Downloading
+	pl = pull
 	upush = !git push --set-upstream origin $(git branch --show-current)
 [delta]
 	navigate = true    # use n and N to move between diff sections
