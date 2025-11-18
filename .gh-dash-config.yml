@@ -32,3 +32,4 @@ keybindings:
       command: ""
 pager:
   diff: delta
+smartFilteringAtLaunch: false
