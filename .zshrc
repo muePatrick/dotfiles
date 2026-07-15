@@ -259,6 +259,9 @@ alias prt="open_ticket"
 
 alias prw="gh pr view --web"
 
+# alias sr='cd "/home/patrick/snabble/$(tv snabble)"'
+alias sr='target=$(tv snabble); cd "${target:+/home/patrick/snabble/$target}" 2>/dev/null || cd .'
+
 clone_repo() {
   # This function is called the name of the orga as the only argument.
   # It shows the list of available repos where multiple can be selected.
