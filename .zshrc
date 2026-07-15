@@ -149,7 +149,7 @@ export BROWSER=$(xdg-settings get default-web-browser | cut -d"." -f1)
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH" # for ASDF
 # source ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh
 
-alias nocors="google-chrome --user-data-dir="/home/patrick/chrome-dev-disabled-security" --disable-web-security --disable-site-isolation-trials"
+alias nocors="chromium --user-data-dir="/home/patrick/chrome-dev-disabled-security" --disable-web-security --disable-site-isolation-trials"
 
 rand() {
   echo $((RANDOM % $1))
