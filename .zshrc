@@ -399,3 +399,5 @@ if [[ -f .nvmrc ]]; then
   nvm use > /dev/null
 fi
 
+# opencode
+export PATH=/home/patrick/.opencode/bin:$PATH
