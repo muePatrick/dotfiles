@@ -388,3 +388,14 @@ source <(zoxide init zsh)
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+chpwd() {
+  if [[ -f .nvmrc ]]; then
+    nvm use
+  fi
+}
+
+if [[ -f .nvmrc ]]; then
+  nvm use > /dev/null
+fi
+
