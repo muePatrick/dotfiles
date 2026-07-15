@@ -105,11 +105,11 @@ create_worktree() {
 }
 alias wta="create_worktree"
 select_worktree() {
-  pushd "$(git worktree list | cut -d" " -f 1 | fzf)"
+  pushd "$(git worktree list |  cut -d" " -f 1 | fzf)"
 }
 alias wtl="select_worktree"
 remove_worktree() {
-  git worktree list | cut -d" " -f 1 | fzf | xargs --no-run-if-empty -I {} git worktree remove {}
+  git worktree list | grep -e "/worktrees/" | cut -d" " -f 1 | fzf | xargs --no-run-if-empty -I {} git worktree remove {}
 }
 alias wtr="remove_worktree"
 start_gitkraken_in_current_folder() {
