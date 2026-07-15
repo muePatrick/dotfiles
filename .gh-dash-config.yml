@@ -1,16 +1,16 @@
-# yaml-language-server: $schema=https://dlvhdr.github.io/gh-dash/configuration/gh-dash/schema.json
+# yaml-language-server: $schema=https://gh-dash.dev/schema.json
 
 prSections:
-  - filters: is:open author:@me
-    title: My Pull Requests
   - filters: is:open review-requested:@me -author:app/dependabot
     title: Needs My Review
-  - filters: is:open involves:@me -author:@me
-    title: Involved
-  - filters: is:open team-review-requested:snabble/store-ui author:app/dependabot
-    title: My Dependabots
-  - filters: is:closed involves:@me ignore in:comments author:app/dependabot
-    title: Ignored Updates
+  - filters: is:open author:@me
+    title: My Pull Requests
+  # - filters: is:open involves:@me -author:@me
+  #   title: Involved
+  # - filters: is:open team-review-requested:snabble/store-ui author:app/dependabot
+  #   title: My Dependabots
+  # - filters: is:closed involves:@me ignore in:comments author:app/dependabot
+  #   title: Ignored Updates
 defaults:
   view: prs
   preview:
@@ -33,3 +33,4 @@ keybindings:
 pager:
   diff: delta
 smartFilteringAtLaunch: false
+browser: nohup xdg-open
