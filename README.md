@@ -23,13 +23,19 @@
 
 1. Install Git
 2. [Install delta](https://github.com/dandavison/delta)
-3. Link config file: `ln -s ./dotfiles/.gitconfig .gitconfig`
-4. Link ignore file: `ln -s ./dotfiles/.gitignore .gitignore`
-5. Link attributes file: `ln -s ./dotfiles/.gitattributes .gitattributes`
+3. [Install diffnav](https://github.com/dlvhdr/diffnav)
+4. Link config file: `ln -s ./dotfiles/.gitconfig .gitconfig`
+5. Link ignore file: `ln -s ./dotfiles/.gitignore .gitignore`
+6. Link attributes file: `ln -s ./dotfiles/.gitattributes .gitattributes`
 
-## Github CLI
+## Other Tools
 
-**TODO**
+- Github CLI
+- FZF
+- RipGrep
+- fd
+- television (TODO save config)
+- batcat
 
 ## NeoVim
 
@@ -43,9 +49,12 @@
 2. Start VSCode and open this folder
 3. Install the plugins through the popup that will recommend all the plugins in this repo
 
-## Kitty
+## Kitty, Opencode, Rofi, TV
 
-**TODO**
+1. setup kitty at `/home/patrick/.config/kitty`
+2. setup rofi at `/home/patrick/.config/rofi`
+3. setup opencode at `/home/patrick/.config/opencode`
+4. setup tv at `/home/patrick/.config/television`
 
 ## Fonts
 
