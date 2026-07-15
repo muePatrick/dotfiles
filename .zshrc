@@ -71,8 +71,33 @@ dockercontainerwait() {
 alias dcw="dockercontainerwait"
 alias dockernamef="docker ps --format 'json' | jq -r '.Names' | fzf"
 alias dnf="docker ps --format 'json' | jq -r '.Names' | fzf"
-alias tf="terraform"
 
+restart_testing_stack() {
+    # Get list of all running stacks
+    STACKS=$(docker stack ls --format "{{.Name}}")
+
+    # Remove stacks if list is not empty
+    if [ -z "$STACKS" ]; then
+        echo "No stacks found, skipping removal..."
+    else
+        echo "Removing all stacks..."
+        echo "$STACKS" | xargs docker stack rm
+    fi
+
+    # Wait until all containers are removed
+    echo "Waiting for all containers to be removed..."
+    dockercontainerwait 0
+
+    # Sleep to prevent docker network not being creatable
+    sleep 1
+
+    # Start new stack by running setup script
+    echo "Starting new stack..."
+    ./testing/deps
+}
+alias td="restart_testing_stack"
+
+alias tf="terraform"
 
 alias g="git"
 create_worktree() {
