@@ -330,7 +330,8 @@ dynamically_start_token() {
   token=$(/home/patrick/go/bin/tokens-cli --dir /home/patrick/snabble/platform-deploy/jwt/testing token --subject patrick.mueller-devserver@snabble.io devserverToken --out - $*)
   echo $token
   decode_jwt 2 $token
-  REACT_APP_TOKEN=$(echo $token) npm start
+  # REACT_APP_TOKEN=$(echo $token) VITE_APP_TOKEN=$(echo $token) npm start
+  REACT_APP_TOKEN=$(echo $token) VITE_APP_TOKEN=$(echo $token) bun start
 }
 alias tod=dynamically_start_token
 dynamically_start_token_staging() {
@@ -401,3 +402,10 @@ fi
 
 # opencode
 export PATH=/home/patrick/.opencode/bin:$PATH
+
+# bun completions
+[ -s "/home/patrick/.bun/_bun" ] && source "/home/patrick/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
