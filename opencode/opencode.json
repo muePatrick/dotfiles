@@ -1,0 +1,18 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "github-copilot/claude-sonnet-4.6",
+  "small_model": "github-copilot/gpt-5-mini",
+  "disabled_providers": [
+    "opencode"
+  ],
+  "permission": {
+    "bash": {
+      "git *": "allow",
+      "git commit *": "deny",
+      "git push *": "deny",
+      "bash": "ask",
+      "zsh": "ask",
+      "sh": "ask"
+    }
+  }
+}

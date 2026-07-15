@@ -1,0 +1,35 @@
+[metadata]
+name = "gh-prs2"
+description = "List GitHub PRs for the current repo"
+requirements = ["gh", "jq"]
+[source]
+command = '''gh pr list --state open --limit 100 --json number,title,createdAt,author,labels,mergeable | jq -r 'sort_by(.createdAt) | reverse | .[] | "\u001b[32m#\(.number)\u001b[39m \(.title) \u001b[90m(\u001b[39m" + (if .mergeable == "MERGEABLE" then "\u001b[32m󰄬\u001b[39m" elif .mergeable == "CONFLICTING" then "\u001b[31m󰃢\u001b[39m" else "\u001b[33m?\u001b[39m" end) + "\u001b[90m)\u001b[39m"'
+'''
+output = '{strip_ansi|split:#:1|split: :0}'
+ansi = true
+[preview]
+command = '''gh pr view '{strip_ansi|split:#:1|split: :0}' --json number,title,body,state,headRefName,baseRefName,author,createdAt,updatedAt,mergeable,changedFiles,additions,deletions,labels,assignees,reviewDecision,headRepository,headRepositoryOwner | jq -r '
+"  \u001b[36mRepo:\u001b[39m \u001b[34m" + (.headRepositoryOwner.login) + "/" + (.headRepository.name) + "\u001b[39m",
+"  \u001b[36mBranches:\u001b[39m " + .baseRefName + " ← " + .headRefName,
+"  \u001b[36mAuthor:\u001b[39m \u001b[33m" + .author.login + "\u001b[39m",
+"  \u001b[36mStatus:\u001b[39m \u001b[32m" + .state + "\u001b[39m (" + (if .mergeable == "MERGEABLE" then "\u001b[32m✓ Clean\u001b[39m" elif .mergeable == "CONFLICTING" then "\u001b[31m✗ Dirty\u001b[39m" else "\u001b[33m? Unknown\u001b[39m" end) + ")",
+"  \u001b[36mCreated:\u001b[39m " + (.createdAt | fromdateiso8601 | (now - .) | if . < 3600 then (./60|floor|tostring) + " minutes ago" elif . < 86400 then (./3600|floor|tostring) + " hours ago" else (./86400|floor|tostring) + " days ago" end) + " (updated " + (.updatedAt | fromdateiso8601 | (now - .) | if . < 3600 then (./60|floor|tostring) + " minutes ago" elif . < 86400 then (./3600|floor|tostring) + " hours ago" else (./86400|floor|tostring) + " days ago" end) + ")",
+"",
+"  \u001b[90m────────────────────────────────────────────────────────────\u001b[39m",
+"",
+(.body // "")'
+'''
+
+[ui.preview_panel]
+size = 60
+
+[ui.status_bar]
+hidden = true
+
+[keybindings]
+enter = "actions:checkout"
+
+[actions.checkout]
+description = "Checkout PR"
+command = "gh pr checkout '{strip_ansi|split:#:1|split: :0}' "
+mode = "execute"

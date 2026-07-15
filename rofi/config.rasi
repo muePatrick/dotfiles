@@ -1,0 +1,8 @@
+configuration {
+}
+
+// rofi -show combi -modes combi -combi-modes "window,drun"
+
+// @theme "squared-everforest"
+@theme "cyberpunk"
+// @theme "style-2"

@@ -1,0 +1,40 @@
+[metadata]
+name = "snabble"
+description = "Go to Snabble Repo"
+requirements = ["gh", "fd", "bat"]
+
+[source]
+command = [
+    '''fd -d 1 -t d . ~/snabble --exec basename | while read repo; do echo "\u001b[32m󰋊\u001b[39m \u001b[37m$repo\u001b[39m"; done''',
+    '''gh repo list snabble --limit 1000 --json name --jq '.[] | "\(.name)"' | while read repo; do if [ -d ~/snabble/"$repo" ]; then echo "\u001b[32m󰋊\u001b[39m \u001b[37m$repo\u001b[39m"; else echo "\u001b[34m\u001b[39m \u001b[37m$repo\u001b[39m"; fi; done'''
+]
+output = '{strip_ansi|split: :1..}'
+ansi = true
+
+[preview]
+command = '''bat ~/snabble/{strip_ansi|split: :1..}/README.md 2>/dev/null || echo "README.md not found"'''
+
+[ui]
+input_header = "Search Snabble Repo:"
+
+[ui.preview_panel]
+size = 75
+header = "{strip_ansi|split: :1..} - README"
+footer = "Switch-View: ctrl-s, Checkout: ctrl-e"
+scrollbar = true
+
+[ui.status_bar]
+hidden = true
+
+[keybindings]
+ctrl-e = "actions:checkout"
+
+[actions.checkout]
+description = "Checkout Repo"
+command = '''
+REPO="{strip_ansi|split: :1..}"
+if [ ! -d ~/snabble/"$REPO" ]; then
+  git clone https://github.com/snabble/"$REPO" ~/snabble/"$REPO"
+fi
+'''
+mode = "fork"

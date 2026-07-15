@@ -1,0 +1,148 @@
+configuration {
+    modi:                       "window,drun";
+    show-icons:                 true;
+    // icon in front of programs that will be launched
+    display-drun:               "";
+    // icon in front of already running programs
+    display-window:             " 󰑄 ";
+    drun-display-format:        "{name} [<span weight='light' size='small'><i>{generic}</i></span>]";
+    window-format:              "<span weight='heavy' size='small'>{class}</span> 󰵈 <span weight='light' size='small'><i> {title}</i></span>";
+}
+
+* {
+    font:   "JetBrains Mono NL 12";
+
+    bgt-1:   #2A0E2AB0;
+    bg0:     #12081A;
+    bgt0:    #12081AB8;
+    bg1:     #1E0F2E;
+    bgt1:    #1E0F2E90;
+    fg0:     #F5D7F0;
+
+    accent-color:    #FF2E97;
+    accent-dim:      #FF2E9740;
+    accent-alt:      #C724F1;
+    cyan-pop:        #21E6E6;
+    urgent-color:    #FF5370;
+
+    background-color:   transparent;
+    text-color:         @fg0;
+
+    margin:     0;
+    padding:    0;
+    spacing:    0;
+}
+
+window {
+    location:   center;
+    width:      850;
+    padding:    16px;
+
+    background-color:   @bgt0;
+    // background-image:   url("../images/books.jpg", width);
+    // border:             2px solid;
+    border-color:       @accent-color;
+    border-radius:      4px;
+}
+
+inputbar {
+    spacing:    8px;
+    padding:    8px;
+    margin:     0 0 16px 0;
+
+    background-color:   @bgt-1;
+    border:             0 0 2px solid 0;
+    border-color:       @cyan-pop;
+    border-radius:      0;
+
+    children: [ "textbox-prompt-colon", "entry" ];
+}
+
+prompt, entry, element-icon, element-text {
+    vertical-align: 0.5;
+}
+
+prompt {
+    text-color: @accent-color;
+}
+
+textbox-prompt-colon {
+    margin:     4px 0 0 4px;
+    enabled:    true;
+    expand:     false;
+    str:        "  ";  
+    text-color: @accent-color;
+}
+
+entry {
+    placeholder:        "search_";
+    placeholder-color:  #F5D7F060;
+    cursor-color:       @cyan-pop;
+    cursor-width:       8px;
+}
+
+textbox {
+    padding:            8px;
+    background-color:   @bgt1;
+    border:             0 0 0 2px solid;
+    border-color:       @accent-alt;
+}
+
+listview {
+    padding:    4px 0;
+    lines:      8;
+    columns:    1;
+
+    fixed-height:   true;
+}
+
+element {
+    padding:    8px;
+    spacing:    8px;
+    margin:     0 0 8px 0;
+}
+
+element normal normal {
+    text-color: @fg0;
+}
+
+element normal urgent {
+    text-color: @urgent-color;
+}
+
+element normal active {
+    text-color: @accent-color;
+}
+
+element alternate active {
+    text-color: @accent-color;
+}
+
+element selected {
+    text-color:     @cyan-pop;
+    border:         0 0 0 3px solid;
+    border-color:   @accent-color;
+    border-radius:  0;
+}
+
+element selected normal, element selected active {
+    background-color:   @accent-dim;
+}
+
+element selected urgent {
+    background-color:   @urgent-color;
+    text-color:         @bg0;
+}
+
+element-icon {
+    size:   0.8em;
+}
+
+element-text {
+    text-color: inherit;
+    highlight:  bold #FF2E97;
+}
+
+mode-switcher {
+    enabled: false;
+}

@@ -1,0 +1,27 @@
+[metadata]
+name = "endpoints"
+description = "Go to Snabble Repo"
+requirements = ["gh", "fd", "bat"]
+
+[source]
+command = [
+    '''rg "router\.(?:\s*|\n\s*)Handle\((?:\s*|\n\s*)\"([a-zA-Z0-9-\/\{\}]*?)\"(?:(?:\S|[\t ]|\n[^\n])*?Methods\(http\.(\w*))?" ~/snabble -U -g "*.go" --column --json | jq -r 'select(.type == "match") | "\(.data.path.text):\(.data.line_number):\(.data.submatches[0].start):\(.data.submatches[0].match.text | gsub("\\n";" "))"' | awk -F: '{file=$1; lnum=$2; col=$3; text=$4; for(i=5;i<=NF;i++) text=text":"$i; match(text, /"([^"]*)"/, url); match(text, /Methods\(http\.Method([^)]+)/, method); m=method[1]; printf "%s%-7s\033[0m: %-80s | %s | %s\n", (m=="Get"?"\033[34m":m=="Post"?"\033[32m":m=="Put"?"\033[33m":m=="Delete"?"\033[31m":m=="Patch"?"\033[35m":""), m, url[1], file, lnum}' ''',
+]
+# display = '{strip_ansi|split:|:0}'
+output = '{strip_ansi|split:|:1} +{strip_ansi|split:|:2|trim}'
+ansi = true
+
+[preview]
+command = '''bat {strip_ansi|split:|:1} --line-range {strip_ansi|split:|:2}:+5'''
+
+[ui]
+input_header = "Search endpoints:"
+
+[ui.preview_panel]
+size = 75
+header = "{strip_ansi}"
+footer = ""
+scrollbar = true
+
+[ui.status_bar]
+hidden = true
