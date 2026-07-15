@@ -50,6 +50,8 @@ alias lln="ll -t | head"
 
 alias d="docker"
 
+alias glogin="eval \"$(ssh-agent -s)\" && ssh-add ~/.ssh/snabble_github_new && export GITHUB_LOGGED_IN=true"
+
 dockercontainerwait() {
   echo "### Running Command ###"
   if [[ $1 == "-a" ]]; then
