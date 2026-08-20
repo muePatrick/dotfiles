@@ -142,6 +142,7 @@ export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 export PATH=$PATH:/usr/bin/flutter/flutter/bin
 
 export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH="$PATH:/home/patrick/.fzf/bin"
 
 export EDITOR=nvim # for C-x C-e
