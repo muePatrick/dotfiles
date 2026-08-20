@@ -402,6 +402,34 @@ if [[ -f .nvmrc ]]; then
   nvm use > /dev/null
 fi
 
+zmodload zsh/datetime || return
+autoload -Uz add-zsh-hook || return
+
+notify_threshold=15
+
+notify_begin() {
+  notify_timestamp=$EPOCHSECONDS
+  notify_lastcmd="$1"
+}
+
+notify_end() {
+  local exitcode=$?
+  (( notify_timestamp > 0 )) || return
+  local elapsed=$(( EPOCHSECONDS - notify_timestamp ))
+  notify_timestamp=0
+
+  (( elapsed >= notify_threshold )) || return
+
+  if (( exitcode == 0 )); then
+    notify-send "✅ Done (${elapsed}s)" "$notify_lastcmd"
+  else
+    notify-send -u critical "❌ Failed (exit $exitcode, ${elapsed}s)" "$notify_lastcmd"
+  fi
+}
+
+add-zsh-hook preexec notify_begin
+add-zsh-hook precmd  notify_end
+
 # opencode
 export PATH=/home/patrick/.opencode/bin:$PATH
 
